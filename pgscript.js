@@ -27,22 +27,26 @@ window.addEventListener('load', function() {
     });
   
     document.getElementById('clipboard').addEventListener('click', () => {
+      document.getElementById('password').select();
+      document.execCommand('copy');
+      alert('Copied to clipboard!');
+
       const textarea = document.createElement('textarea');
 
-      const length= +lengthEl.value;
+      //const length = lengthEl.value.length;
 
 
       console.log(typeof length);
   
       if (!password) {
         return;
-      }
+      };
   
       textarea.value = password;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      textarea.remove();
+      //document.body.appendChild(textarea);
+      //textarea.select();
+      //document.execCommand('copy');
+      //textarea.remove();
       alert('Password copied to clipboard');
     });
   });
@@ -83,19 +87,20 @@ window.addEventListener('load', function() {
   
   // Generator functions
   function getRandomLower() {
-    return rando("qwertyuiopasdfghjklzxcvbnm")
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
   }
   
   function getRandomUpper() {
-    return rando("QWERTYUIOPASDFGHJKLZXCVBNM");
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
   }
   
   function getRandomNumber() {
-    return rando(9);
+    return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
   }
   
   function getRandomSymbol() {
-    return rando('!@#$%^&*(){}[]=<>/,.');
+    const symbols = '!@#$%^&*(){}[]=<>/,.'
+    return symbols[Math.floor(Math.random() * symbols.length)];
   }
    
   
